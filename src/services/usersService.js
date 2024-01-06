@@ -88,7 +88,6 @@ export default class usersService {
     async updatelastConnection(uid) {
         try {
 
-            // var newRol = ""
             const user = await userModel.find({ _id: uid });
 
             if (!user || user == null || Object.keys(user).length === 0) return `E02|No se encontro el usuario en base de datos.`;
@@ -107,4 +106,17 @@ export default class usersService {
         }
     }
 
+    async obtainUser(uid){
+        const user = await userModel.find({ _id: uid });
+
+        if (!user || user == null || Object.keys(user).length === 0) return `E02|No se encontro el usuario en base de datos.`;
+
+        const documents = user[0].documents
+
+        await userModel.updateOne(
+            { "_id": uid },
+            { $set: { role: "User" } }
+        )
+
+    }
 }

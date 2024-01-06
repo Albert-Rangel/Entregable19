@@ -202,6 +202,7 @@ export const getProductsinCartByIdPagination = async (req, res) => {
         status: arrayAnswer[0],
         message: arrayAnswer[1]
       }
+      
       return res.send(answer);
     }
   } catch (error) {

@@ -5,88 +5,86 @@ import { logger } from '../utils/logger.js';
 const UsersManager = new usersManager()
 
 function ManageAnswer(answer) {
-  const arrayAnswer = []
-  if (answer) {
-    const splitString = answer.split("|");
-    switch (splitString[0]) {
-      case "E01":
-        arrayAnswer.push(400)
-        arrayAnswer.push(splitString[1])
-        return arrayAnswer
-        break;
-      case "E02":
-        arrayAnswer.push(404)
-        arrayAnswer.push(splitString[1])
-        return arrayAnswer
-        break;
-      case "SUC":
-        arrayAnswer.push(200)
-        arrayAnswer.push(splitString[1])
-        return arrayAnswer
-        break;
-      case "ERR":
-      default:
-        arrayAnswer.push(500)
-        arrayAnswer.push(splitString[1])
-        return arrayAnswer
-        break;
+    const arrayAnswer = []
+    if (answer) {
+        const splitString = answer.split("|");
+        switch (splitString[0]) {
+            case "E01":
+                arrayAnswer.push(400)
+                arrayAnswer.push(splitString[1])
+                return arrayAnswer
+                break;
+            case "E02":
+                arrayAnswer.push(404)
+                arrayAnswer.push(splitString[1])
+                return arrayAnswer
+                break;
+            case "SUC":
+                arrayAnswer.push(200)
+                arrayAnswer.push(splitString[1])
+                return arrayAnswer
+                break;
+            case "ERR":
+            default:
+                arrayAnswer.push(500)
+                arrayAnswer.push(splitString[1])
+                return arrayAnswer
+                break;
+        }
     }
-  }
 }
 
 export const changeRol = async (req, res) => {
 
-  try {
-    console.log("entro en el controlador de user changeRol")
-    var uid = req.params.uid
-    console.log("uid" + uid)
+    try {
+        var uid = req.params.uid
 
-    let carnew = await UsersManager.changeRol(uid)
-    const arrayAnswer = ManageAnswer(carnew)
+        let answer = await UsersManager.changeRol(uid)
+        const arrayAnswer = ManageAnswer(answer)
 
-    return res.status(arrayAnswer[0]).send({
-      status: arrayAnswer[0],
-      message: arrayAnswer[1]
-    })
+        var swbool = answer.split("|")[1] == "Premium" ? true : false;
+        console.log(swbool)
+        if (swbool) {
+            req.session.user.role = "Premium"
+        } else {
+            req.session.user.role = "User"
+        }
 
-  } catch (error) {
-    logger.error("Error en userController/changeRol: " + error)
-    return res.status(500).send({
-      status: "500",
-      message: `Error occured in userController in changeRol`
-    })
-  }
+        res.redirect("/products")
+
+    } catch (error) {
+        logger.error("Error en userController/changeRol: " + error)
+        return res.status(500).send({
+            status: "500",
+            message: `Error occured in userController in changeRol`
+        })
+    }
 }
 export const uploadFile = async (req, res) => {
- 
-  try {
-    console.log("entro en el controlador de user uploadFile")
-    var uid = req.params.uid
-    console.log("uid" + uid)
-    // if (!req.file) {
-    //   return res.status(500).send({
-    //     status: "500",
-    //     message: `Error occured in UsertManager in uploadFile`
-    //   })
-    // }
 
-    // var uid = req.params.uid
+    try {
+        console.log("entro en el controlador de user uploadFile")
+        var uid = req.params.uid
+        console.log("uid" + uid)
+        // if (!req.file) {
+        //  console.log("es nulo")
+        // }
 
-    // let answer = await UserService.changeuserStatus(uid)
+        let answer = await UsersManager.uploadFile(uid)
 
-    // const arrayAnswer = ManageAnswer(answer)
+        // const arrayAnswer = ManageAnswer(answer)
 
-    // req.session.user.role = arrayAnswer[1]
+        // req.session.user.role = arrayAnswer[1]
 
-    res.redirect("/UploaderView")
+        res.redirect("/UploaderView")
 
-  } catch (error) {
-    logger.error("Error en userController/uploadFile: " + error)
-    return swWeb ? error : res.status(500).send({
-      status: "500",
-      message: `Se ha arrojado una exepcion: error`
-    })
-  }
+    } catch (error) {
+        logger.error("Error en userController/uploadFile: " + error)
+        return swWeb ? error : res.status(500).send({
+            status: "500",
+            message: `Se ha arrojado una exepcion: error`
+        })
+    }
 }
 
 

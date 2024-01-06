@@ -5,15 +5,16 @@ import usersService from '../services/usersService.js';
 const UserService = new usersService()
 
 class usersRepositories {
-  async asyncchangeRol(uid) {
+  async changeRol(uid) {
     try {
+      console.log("entro en el repositorio")
 
       let answer = await UserService.changeRol(uid)
-
-      return `SUC|Carrito agregado con el id ${carnnew._id}`
+      console.log("answer " + answer)
+      return answer
 
     } catch (error) {
-      logger.error("Error en userRepositories/asyncchangeRol: " + error)
+      logger.error("Error en userRepositories/changeRol: " + error)
       return `ERR|Error generico. Descripcion :${error}`
     }
   }
@@ -29,7 +30,7 @@ class usersRepositories {
 
       // var uid = req.params.uid
 
-      // let answer = await UserService.changeuserStatus(uid)
+      let user = await UserService.obtainUser(uid)
 
       // const arrayAnswer = ManageAnswer(answer)
 

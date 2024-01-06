@@ -1926,3 +1926,14 @@ error: Error en ProductsService/getProductNpaginviaService: MongooseError: Opera
 2024-01-06T20:24:02.168Z [logs] error: Error en UseressService/updatelastConnection: CastError: Cast to date failed for value "[Function: now]" (type function) at path "lastConnection"
 2024-01-06T20:25:56.623Z [logs] error: Error en UseressService/changeuserStatus: CastError: Cast to date failed for value "[Function: now]" (type function) at path "lastConnection"
 2024-01-06T20:39:00.270Z [logs] error: Error en UseressService/changeuserStatus: CastError: Cast to date failed for value "[Function: now]" (type function) at path "lastConnection"
+2024-01-06T23:26:04.653Z [logs] error: Error en userController/changeRol: TypeError: UserRepositories.changeRol is not a function
+2024-01-06T23:28:01.979Z [logs] error: Error en userRepositories/asyncchangeRol: ReferenceError: carnnew is not defined
+2024-01-06T23:29:05.686Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-06T23:46:08.346Z [logs] error: Error en userController/changeRol: TypeError: arrayAnswer[0].split is not a function
+2024-01-06T23:47:44.005Z [logs] error: Error en userController/changeRol: TypeError: arrayAnswer[0].split is not a function
+2024-01-06T23:48:33.341Z [logs] error: Error en userController/changeRol: TypeError: arrayAnswer[0].split is not a function
+2024-01-06T23:49:09.919Z [logs] error: Error en userController/changeRol: TypeError: arrayAnswer[0].split is not a function
+2024-01-06T23:50:44.237Z [logs] error: Error en userController/changeRol: TypeError: arrayAnswer[0].split is not a function
+2024-01-06T23:55:10.905Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-06T23:55:40.923Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-06T23:56:22.908Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms

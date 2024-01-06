@@ -45,18 +45,11 @@ const userSchema = new mongoose.Schema({
             }
         ], default: []
     },
-    statusid: {
+    status: {
         type: Boolean,
         default: false
     },
-    statusHomeAddress: {
-        type: Boolean,
-        default: false
-    },
-    statusBankAccount: {
-        type: Boolean,
-        default: false
-    },
+    
 });
 
 const userModel = mongoose.model(userCollection, userSchema);

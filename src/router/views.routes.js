@@ -104,6 +104,7 @@ router.get("/products", privateRoutes, async (req, res) => {
         role: req.session.user.role,
         id: req.session.user.id,
     }
+    console.log("req.session.user.role" + req.session.user.role)
 
     const firstname = req.session.user.firstname;
     const lastname = req.session.user.lastname;
