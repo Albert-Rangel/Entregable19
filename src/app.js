@@ -159,6 +159,7 @@ app.set("view engine", "handlebars")
 //Seccion de Static
 app.use(express.static(__dirname + "/public"))
 
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())

@@ -4,8 +4,10 @@ import { userModel } from '../dao/models/user.model.js';
 import publicRoutes from "../middlewares/publicRoutes.js"
 import passport from 'passport';
 import privateRoutes from '../middlewares/privateRoutes.js';
+import usersService from "../services/usersService.js"
 import userdto from '../dto/userdto.js'
 const router = Router();
+const UsersService = new usersService()
 
 
 router.post('/login', publicRoutes,
@@ -32,6 +34,8 @@ router.post('/login', publicRoutes,
     };
 
     req.session.isLogged = true;
+    
+    await UsersService.updatelastConnection(req.user._id)
 
     res.redirect('/products');
   }
@@ -78,14 +82,12 @@ router.post('/signup', publicRoutes, passport.authenticate("register",
     res.redirect('/login');
   });
 
-
-
 router.get("/github",
   passport.authenticate("github", { scope: ["user:email"] }))
 
 router.get("/githubcallback",
   passport.authenticate("github", { failureRedirect: "/login" }),
-  (req, res) => {
+  async (req, res) => {
 
     const objectId_ = req.user.cart[0]._id;
 
@@ -103,6 +105,7 @@ router.get("/githubcallback",
       id: req.user._id,
     };
     req.session.isLogged = true;
+    await UsersService.updatelastConnection(req.user._id)
 
 
     res.redirect("/products")

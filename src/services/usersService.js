@@ -40,7 +40,7 @@ export default class usersService {
     async verifyProductPermission(uid, pid) {
         try {
             //obtener el email y el role del usuario logeado
-            
+
             const user = await userModel.find({ _id: uid });
             const role = user[0].role
 
@@ -51,7 +51,7 @@ export default class usersService {
                 const product = await productsModel.find({ _id: pid });
                 const emailproduct = product[0].owner
 
-                if(emailproduct != emailuser) return false
+                if (emailproduct != emailuser) return false
             }
 
             //retornar true or false
@@ -59,6 +59,51 @@ export default class usersService {
         } catch (error) {
             logger.error("Error en UseressService/changeRol: " + error)
             return false
+        }
+    }
+
+    async changeuserStatus(uid) {
+        try {
+
+            // var newRol = ""
+            const user = await userModel.find({ _id: uid });
+
+            if (!user || user == null || Object.keys(user).length === 0) return `E02|No se encontro el usuario en base de datos.`;
+
+
+            const status = user[0].status
+
+            await userModel.updateOne(
+                { "_id": uid },
+                { $set: { status: true } }
+            )
+
+            return `SUC|` + "Exito."
+        } catch (error) {
+            logger.error("Error en UseressService/changeuserStatus: " + error)
+            return `ERR|Error generico. Descripcion :${error}`
+        }
+    }
+
+    async updatelastConnection(uid) {
+        try {
+
+            // var newRol = ""
+            const user = await userModel.find({ _id: uid });
+
+            if (!user || user == null || Object.keys(user).length === 0) return `E02|No se encontro el usuario en base de datos.`;
+
+            const lastconnection = user[0].lastConnection
+            const currentDt =  Date.now()
+            await userModel.updateOne(
+                { "_id": uid },
+                { $set: { lastConnection: currentDt } }
+            )
+
+            return `SUC|` + "Exito."
+        } catch (error) {
+            logger.error("Error en UseressService/changeuserStatus: " + error)
+            return `ERR|Error generico. Descripcion :${error}`
         }
     }
 

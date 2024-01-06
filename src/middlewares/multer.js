@@ -1,8 +1,25 @@
 import multer from 'multer';
 
+function folderName(file) {
+
+  let name  = file.fieldname == "profileFile" ? "profiles" : file.fieldname == "productsFile" ? "products" : "documents"
+  return name
+}
+function fileName(name, field,  id) {
+  console.log(name)
+  console.log(field)
+  
+  let filename  = name.split('.')
+  console.log(filename)
+
+  let finalname = field + "," + id + "." + filename[1]
+  return finalname
+}
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, './public'),
-  filename: (req, file, cb) => cb(null, file.originalname),
+
+  destination: (req, file, cb) => cb(null, `./src/public/` + folderName(file)),
+  filename: (req, file, cb) => cb(null, fileName(file.originalname , file.fieldname, req.user._id) ),
 });
 
-export const uploader = multer({ storage });
+
+export const uploader = multer({ storage })

@@ -2,7 +2,7 @@
     {{!-- <img src="https://i.pinimg.com/originals/66/79/b6/6679b67c5fb579305d74dadd2029441c.jpg" width="300px"> --}}
 
     <h1> Bienvenid@ {{firstname}} {{lastname}} </h1>
-    <p>
+    {{!-- <p>
         Email : {{email_}}
     </p>
 
@@ -11,7 +11,7 @@
     </p>
     <p>
         UserId :{{uid}}
-    </p>
+    </p> --}}
     <p>
         Role : {{role}}
     </p>
@@ -27,13 +27,19 @@
         See your Shooping Cart
     </a>
     <a href="/api/users/premium/{{uid}}" class="boton">
-        Cambiar de rol
+        Change Role
+    </a>
+    <a href="/UploaderView" class="boton">
+        Personal Information
     </a>
     {{/if}}
 
     {{#if swAdmin}}
     <a href="/realTimeProducts" class="boton">
         Product Managment Section
+    </a>
+    <a href="/UploaderView" class="boton">
+        Upload Files
     </a>
     {{/if}}
 
@@ -45,7 +51,10 @@
         Product Managment Section
     </a>
     <a href="/api/users/premium/{{uid}}" class="boton">
-        Cambiar de rol
+       Change Role
+    </a>
+    <a href="/UploaderView" class="boton">
+        Personal Information
     </a>
     {{/if}}
 

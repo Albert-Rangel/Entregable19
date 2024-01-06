@@ -1922,3 +1922,7 @@ error: Error en ProductsService/getProductNpaginviaService: MongooseError: Opera
 2024-01-01T17:09:41.292Z [logs] error: Error en PasswordService/resetPassword: TypeError: Cannot read properties of null (reading 'password')
 2024-01-01T17:10:27.536Z [logs] error: Error en PasswordService/resetPassword: TypeError: Cannot read properties of null (reading 'password')
 2024-01-01T17:11:42.310Z [logs] error: Error en PasswordService/resetPassword: TypeError: Cannot read properties of null (reading 'password')
+2024-01-06T18:20:16.909Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-06T20:24:02.168Z [logs] error: Error en UseressService/updatelastConnection: CastError: Cast to date failed for value "[Function: now]" (type function) at path "lastConnection"
+2024-01-06T20:25:56.623Z [logs] error: Error en UseressService/changeuserStatus: CastError: Cast to date failed for value "[Function: now]" (type function) at path "lastConnection"
+2024-01-06T20:39:00.270Z [logs] error: Error en UseressService/changeuserStatus: CastError: Cast to date failed for value "[Function: now]" (type function) at path "lastConnection"

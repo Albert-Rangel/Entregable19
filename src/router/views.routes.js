@@ -9,10 +9,11 @@ import productsManager from "../dao/Mongo/ProductManager.js";
 import publicRoutes from "../middlewares/publicRoutes.js"
 import privateRoutes from "../middlewares/privateRoutes.js"
 import permissionsRoutes from "../middlewares/adminpermissionsRoutes.js"
+import usersService from "../services/usersService.js"
 
 const CartsManager = new cartsManager()
 const ProductsManager = new productsManager()
-
+const UsersService = new usersService()
 
 const router = express.Router()
 
@@ -49,6 +50,24 @@ router.get("/home", async (req, res) => {
     })
 })
 
+router.get("/UploaderView", async (req, res) => {
+    const id =  req.session.user.id;
+    const firstname = req.session.user.firstname;
+    const lastname = req.session.user.lastname;
+    const age = req.session.user.age;
+    const email_ = req.session.user.email;
+    const cart = req.session.user.cart;
+    const role = req.session.user.role;
+   
+    res.render("UploadViewer", {
+        title: "Uploader",
+        style: "home.css",
+        uid: id, firstname,lastname, age, email_, cart, role
+    })
+})
+
+
+
 router.get("/PersonalCart", async (req, res) => {
 
     const cid = req.session.user.cart;
@@ -69,9 +88,9 @@ router.get("/PersonalCartStatic", async (req, res) => {
     res.render("cartStatic", {
         title: "Personal Shooping Cart",
         style: "catalog.css",
-        cid:  cid,
+        cid: cid,
         allProducts: allProducts,
-    }) 
+    })
 })
 
 router.get("/products", privateRoutes, async (req, res) => {
@@ -151,8 +170,10 @@ router.get('/recover', publicRoutes, (req, res) => {
     })
 });
 
-router.get('/logout', privateRoutes, (req, res) => {
+router.get('/logout', privateRoutes, async (req, res) => {
     req.session.destroy()
+    await UsersService.updatelastConnection(req.user._id)
+
     res.render("login", {
         title: "Login Form",
         style: "login.css"
@@ -201,7 +222,7 @@ router.get('/failogin', publicRoutes, (req, res) => {
 });
 
 router.post('/generalFailform', (req, res) => {
- 
+
     var { message } = req.body
 
     res.render("generalFailform", {
