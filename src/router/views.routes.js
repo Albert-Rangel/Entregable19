@@ -51,13 +51,20 @@ router.get("/home", async (req, res) => {
 })
 
 router.get("/UploaderView", async (req, res) => {
+    console.log("entro en el view de UploaderView")
     const id = req.session.user.id;
+
+    let user = await UsersService.obtainUser(id)
+    
     const firstname = req.session.user.firstname;
     const lastname = req.session.user.lastname;
     const age = req.session.user.age;
     const email_ = req.session.user.email;
     const cart = req.session.user.cart;
-    const role = req.session.user.role;
+    const role = user[0].role;
+    req.session.user.role = role
+    console.log(role)
+    console.log(req.session.user.role)
 
     res.render("UploadViewer", {
         title: "Uploader",
@@ -65,7 +72,6 @@ router.get("/UploaderView", async (req, res) => {
         uid: id, firstname, lastname, age, email_, cart, role,
     })
 })
-
 
 
 router.get("/PersonalCart", async (req, res) => {
@@ -94,7 +100,7 @@ router.get("/PersonalCartStatic", async (req, res) => {
 })
 
 router.get("/products", privateRoutes, async (req, res) => {
-    console.log("entro en el viewrouter en products")
+
     let user = {
         firstname: req.session.user.firstname,
         lastname: req.session.user.lastname,

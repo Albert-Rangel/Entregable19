@@ -41,13 +41,18 @@ export default class usersService {
     async verifyUserDocumentation(uid) {
         try {
             let swbool = 0
+            
             const user = await userModel.find({ _id: uid });
 
             if (!user || user == null || Object.keys(user).length === 0) return `E02|No se encontro el usuario en base de datos.`;
 
+            if(user[0].role == "Premium"){
+                console.log("entro en preimum golden tickect")
+                return `SUC|` + 'Posee todos los documentos para cambiarse el rol'
+            }
             const documents = user[0].documents
 
-            if (documents.length === 0) return 0
+            if (documents.length === 0) return `E02|` + "No posee todos los documentos necesarios"
 
             const wordsToCheck = ['profileFile', 'addressFile', 'BankFile', 'IDFile'];
 
@@ -55,13 +60,14 @@ export default class usersService {
                 return documents.some((item) => item.name.startsWith(word));
             });
 
-            if (allDocumentsFound) {
-                return swbool = 1
+            if (!allDocumentsFound) {
+                return `E02|` + "No posee todos los documentos necesarios"
+                // return swbool = 1
             }
-            return swbool = 0
-            // return `SUC|` + newRol
+            // return swbool = 0
+            return `SUC|` + 'Posee todos los documentos para cambiarse el rol'
         } catch (error) {
-            logger.error("Error en UseressService/changeRol: " + error)
+            logger.error("Error en UseresService/verifyUserDocumentation: " + error)
             return `ERR|Error generico. Descripcion :${error}`
         }
     }

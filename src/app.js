@@ -4,16 +4,18 @@ import { Server } from 'socket.io'
 import __dirname from './utils.js'
 import ProductRoutes from './router/productMongo.routes.js'
 import cartsManager from './dao/Mongo/CartManager.js';
-// import productsManager from './dao/Mongo/ProductManager.js';
 import {
   getProducts,
   addProduct,
-  getProducts_,
-  getProductById,
   updateProduct,
   deleteProduct,
 
 }from './controller/productController.js'
+import {
+  changeRol
+
+}from './controller/userController.js'
+
 import ChatsRoutes from './router/chat.routes.js'
 import MockRoutes from './router/mock.routes.js'
 import PasswordRoutes from './router/password.routes.js'
@@ -113,6 +115,12 @@ Socketserverio.on('connection', async (socket) => {
     const productList = await getProducts({ limit: 50, page: 1, sort: null, query: null });
     Socketserverio.emit('AllProducts', productList)
   })
+  
+  socket.on('changeUserStatus', async ({ uid }) => {
+    let success = await changeRol({uid});
+    Socketserverio.emit('changedRole', success)
+  })
+
 
   socket.on('functionDeleteProduct', async ({ pid, uid }) => {
     await deleteProduct({ pid, uid });

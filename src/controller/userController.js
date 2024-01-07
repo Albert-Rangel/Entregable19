@@ -1,8 +1,11 @@
 
+import { use } from 'chai';
 import usersManager from '../dao/Mongo/UserManager.js';
 import { logger } from '../utils/logger.js';
+import usersService from '../services/usersService.js';
 
 const UsersManager = new usersManager()
+const UsersService = new usersService()
 
 function ManageAnswer(answer) {
     const arrayAnswer = []
@@ -37,37 +40,25 @@ function ManageAnswer(answer) {
 export const changeRol = async (req, res) => {
 
     try {
-        var uid = req.params.uid
+
+        let uid = req.uid
+        console.log("uid")
+        console.log(uid)
+
         let answerDoc = await UsersManager.verifyUserDocumentation(uid)
-        const isString = (value) => typeof value === 'string';
+        const arrayAnswerVerify = ManageAnswer(answerDoc)
 
-        if (isString(answerDoc)) {
+        console.log("answerDoc")
+        console.log(answerDoc)
 
-            const arrayAnswer = ManageAnswer(answer)
-            req.session.params = { error: arrayAnswer[0], message: arrayAnswer[1] };
-            res.redirect("/products") // redireccionar a un error proque no se como meterle alert
-            return; 
-        }
-
-        if (answerDoc == 0) {
-
-            req.session.params = { error: 'NDU', message: 'No posee toda la documentacion pertinente para cambio de rol' };
-            res.redirect("/products") // redireccionar a un error proque no se como meterle alert
-            return; 
+        if (arrayAnswerVerify[0] != 200) {
+            return answerDoc;
         }
 
         let answer = await UsersManager.changeRol(uid)
         const arrayAnswer = ManageAnswer(answer)
 
-        var swbool = answer.split("|")[1] == "Premium" ? true : false;
-        console.log(swbool)
-        if (swbool) {
-            req.session.user.role = "Premium"
-        } else {
-            req.session.user.role = "User"
-        }
-
-        res.redirect("/products")
+        return answer
 
     } catch (error) {
         logger.error("Error en userController/changeRol: " + error)
@@ -75,7 +66,8 @@ export const changeRol = async (req, res) => {
         //     status: "500",
         //     message: `Error occured in userController in changeRol`
         // })
-        res.redirect("/products")
+        return 'ERR|Error occured in userController in changeRol'
+        // res.redirect("/products") // crear error form para user
     }
 }
 export const uploadFile = async (req, res) => {

@@ -2,15 +2,46 @@ const socket = io()
 let cid = ""
 
 socket.on('AllProductsCart', (data) => {
-    console.log("browser")
-    console.log(data)
-
     updateProductCatalogList(data);
 });
+socket.on('changedRole', (success) => {
+    updateUserRole(success);
+});
+
+async function updateUserRole(success) {
+    let content = success.split("|")
+    if (content[0] != 'SUC') {
+        window.alert(content)
+    }else{
+        window.alert("Su cambio de rol ha sido exitodo. Verificar en su Informacion personal")
+    }
+}
+
 
 socket.on('newProductinCart', (data) => {
     updateProductCounter(data);
 });
+
+let bttChangeRol = document.getElementById("bttChangeRol");
+// let bttChangeRolpremium = document.getElementById("bttChangeRolpremium");
+
+bttChangeRol.addEventListener("click", (evt) => {
+    evt.preventDefault()
+    let uid = document.getElementById("uid").innerText;
+
+    socket.emit('changeUserStatus', {
+        uid
+    })
+});
+// bttChangeRolpremium.addEventListener("click", (evt) => {
+//     evt.preventDefault()
+//     let uid = document.getElementById("uid").innerText;
+
+//     socket.emit('changeUserStatus', {
+//         uid
+//     })
+// });
+
 const manegedivShown = () => {
     const counterSpam = document.getElementById("counter");
     counterSpam.style.display = "none";
@@ -41,7 +72,7 @@ async function updateProductCatalogList(productList) {
     const catalogDiv = document.getElementById("catalogo");
     let contenidocambiante = ""
 
-    productList.docs.forEach(({ thumbnail, price, description, _id, code, stock, status, category, title , owner}) => {
+    productList.docs.forEach(({ thumbnail, price, description, _id, code, stock, status, category, title, owner }) => {
         contenidocambiante += `<div class="form-container">
             <div>
                 <div class="card">

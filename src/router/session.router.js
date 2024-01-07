@@ -1,6 +1,4 @@
 import { Router, json } from 'express';
-import bcrypt from 'bcrypt';
-import { userModel } from '../dao/models/user.model.js';
 import publicRoutes from "../middlewares/publicRoutes.js"
 import passport from 'passport';
 import privateRoutes from '../middlewares/privateRoutes.js';
@@ -21,7 +19,6 @@ router.post('/login', publicRoutes,
     // Extract the hexadecimal representation
     const hexString = objectId_.toHexString();
 
-
     req.session.user = {
       firstname: req.user.firstname,
       lastname: req.user.lastname,
@@ -34,7 +31,7 @@ router.post('/login', publicRoutes,
     };
 
     req.session.isLogged = true;
-    
+
     await UsersService.updatelastConnection(req.user._id)
 
     res.redirect('/products');
@@ -134,14 +131,5 @@ router.get(
     res.send(dtouser);
   }
 );
-
-// router.get(
-//   '/signout', 
-//   async (req, res) => {
-
-//     res.send();
-//   }
-// );
-
 
 export default router;
