@@ -38,6 +38,35 @@ export default class usersService {
         }
     }
 
+    async verifyUserDocumentation(uid) {
+        try {
+            let swbool = 0
+            const user = await userModel.find({ _id: uid });
+
+            if (!user || user == null || Object.keys(user).length === 0) return `E02|No se encontro el usuario en base de datos.`;
+
+            const documents = user[0].documents
+
+            if (documents.length === 0) return 0
+
+            const wordsToCheck = ['profileFile', 'addressFile', 'BankFile', 'IDFile'];
+
+            let allDocumentsFound = wordsToCheck.every((word) => {
+                return documents.some((item) => item.name.startsWith(word));
+            });
+
+            if (allDocumentsFound) {
+                return swbool = 1
+            }
+            return swbool = 0
+            // return `SUC|` + newRol
+        } catch (error) {
+            logger.error("Error en UseressService/changeRol: " + error)
+            return `ERR|Error generico. Descripcion :${error}`
+        }
+    }
+
+
     async verifyProductPermission(uid, pid) {
         try {
             //obtener el email y el role del usuario logeado
@@ -107,7 +136,7 @@ export default class usersService {
         }
     }
 
-    async updatedocuments(uid , newDocuments) {
+    async updatedocuments(uid, newDocuments) {
         try {
 
             const user = await userModel.find({ _id: uid });
@@ -129,7 +158,7 @@ export default class usersService {
         }
     }
 
-    async documentsStatus(uid , swbool) {
+    async documentsStatus(uid, swbool) {
         try {
 
             const user = await userModel.find({ _id: uid });
@@ -199,9 +228,9 @@ export default class usersService {
             swbool = false
         }
 
-        await this.updatedocuments(uid , newDocuments)
+        await this.updatedocuments(uid, newDocuments)
 
-        await this.documentsStatus(uid , swbool)
+        await this.documentsStatus(uid, swbool)
 
         //no borrar esto sirve si quieres encontrar un file en especifico
         // try {

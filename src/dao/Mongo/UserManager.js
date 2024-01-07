@@ -6,8 +6,10 @@ const UserRepositories = new userRepositories()
 
 class UserManager {
   async changeRol(uid) {
-    console.log("entro en el manager")
     return await UserRepositories.changeRol(uid)
+  }
+  async verifyUserDocumentation(uid) {
+    return await UserRepositories.verifyUserDocumentation(uid);
   }
   async uploadFile(uid) {
     return await UserRepositories.uploadFile(uid);

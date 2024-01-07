@@ -38,6 +38,23 @@ export const changeRol = async (req, res) => {
 
     try {
         var uid = req.params.uid
+        let answerDoc = await UsersManager.verifyUserDocumentation(uid)
+        const isString = (value) => typeof value === 'string';
+
+        if (isString(answerDoc)) {
+
+            const arrayAnswer = ManageAnswer(answer)
+            req.session.params = { error: arrayAnswer[0], message: arrayAnswer[1] };
+            res.redirect("/products") // redireccionar a un error proque no se como meterle alert
+            return; 
+        }
+
+        if (answerDoc == 0) {
+
+            req.session.params = { error: 'NDU', message: 'No posee toda la documentacion pertinente para cambio de rol' };
+            res.redirect("/products") // redireccionar a un error proque no se como meterle alert
+            return; 
+        }
 
         let answer = await UsersManager.changeRol(uid)
         const arrayAnswer = ManageAnswer(answer)
@@ -54,10 +71,11 @@ export const changeRol = async (req, res) => {
 
     } catch (error) {
         logger.error("Error en userController/changeRol: " + error)
-        return res.status(500).send({
-            status: "500",
-            message: `Error occured in userController in changeRol`
-        })
+        // return res.status(500).send({
+        //     status: "500",
+        //     message: `Error occured in userController in changeRol`
+        // })
+        res.redirect("/products")
     }
 }
 export const uploadFile = async (req, res) => {

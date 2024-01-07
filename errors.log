@@ -1953,3 +1953,14 @@ error: Error en ProductsService/getProductNpaginviaService: MongooseError: Opera
 2024-01-07T01:49:50.293Z [logs] error: Error en userRepositories/uploadFile: TypeError: allDocumentsFound.some is not a function
 2024-01-07T01:52:39.433Z [logs] error: Error en userRepositories/uploadFile: TypeError: allDocumentsFound.some is not a function
 2024-01-07T01:54:45.072Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: updatedocuments is not defined
+2024-01-07T14:31:28.796Z [logs] error: Error en UseressService/changeRol: ReferenceError: swbool is not defined
+2024-01-07T14:31:28.797Z [logs] error: Error en userController/changeRol: ReferenceError: isString is not defined
+2024-01-07T14:32:52.100Z [logs] error: Error en UseressService/changeRol: ReferenceError: swbool is not defined
+2024-01-07T14:32:52.101Z [logs] error: Error en userController/changeRol: ReferenceError: Cannot access 'answer' before initialization
+2024-01-07T14:34:19.129Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2024-01-07T14:35:47.363Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2024-01-07T14:36:39.301Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2024-01-07T14:38:02.967Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2024-01-07T14:40:28.308Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2024-01-07T14:43:16.871Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2024-01-07T14:45:38.714Z [logs] error: Error en userController/changeRol: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client

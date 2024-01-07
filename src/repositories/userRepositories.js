@@ -7,7 +7,6 @@ const UserService = new usersService()
 class usersRepositories {
   async changeRol(uid) {
     try {
-      console.log("entro en el repositorio")
 
       let answer = await UserService.changeRol(uid)
       console.log("answer " + answer)
@@ -18,6 +17,19 @@ class usersRepositories {
       return `ERR|Error generico. Descripcion :${error}`
     }
   }
+
+  async verifyUserDocumentation(uid) {
+    try {
+
+      let answer = await UserService.verifyUserDocumentation(uid)
+      return answer
+
+    } catch (error) {
+      logger.error("Error en userRepositories/changeRol: " + error)
+      return `ERR|Error generico. Descripcion :${error}`
+    }
+  }
+
 
   async uploadFile(uid) {
     try {

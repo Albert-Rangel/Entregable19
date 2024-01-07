@@ -51,18 +51,18 @@ router.get("/home", async (req, res) => {
 })
 
 router.get("/UploaderView", async (req, res) => {
-    const id =  req.session.user.id;
+    const id = req.session.user.id;
     const firstname = req.session.user.firstname;
     const lastname = req.session.user.lastname;
     const age = req.session.user.age;
     const email_ = req.session.user.email;
     const cart = req.session.user.cart;
     const role = req.session.user.role;
-   
+
     res.render("UploadViewer", {
         title: "Uploader",
         style: "home.css",
-        uid: id, firstname,lastname, age, email_, cart, role, 
+        uid: id, firstname, lastname, age, email_, cart, role,
     })
 })
 
@@ -94,7 +94,7 @@ router.get("/PersonalCartStatic", async (req, res) => {
 })
 
 router.get("/products", privateRoutes, async (req, res) => {
-
+    console.log("entro en el viewrouter en products")
     let user = {
         firstname: req.session.user.firstname,
         lastname: req.session.user.lastname,
@@ -104,6 +104,7 @@ router.get("/products", privateRoutes, async (req, res) => {
         role: req.session.user.role,
         id: req.session.user.id,
     }
+
     console.log("req.session.user.role" + req.session.user.role)
 
     const firstname = req.session.user.firstname;
