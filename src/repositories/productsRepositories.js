@@ -98,9 +98,9 @@ class productRepositories {
         try {
 
             const { title, description, price, thumbnail, code, stock, status, category, owner } = product;
-            
-            const found = await productsModel.find({ _id: pid });
 
+            const found = await productsModel.find({ _id: pid });
+            
             if (found == undefined || Object.keys(found).length === 0) return `E02|El producto con el id ${pid} no se encuentra agregado.`;
 
             for (const [key, value] of Object.entries(product)) {

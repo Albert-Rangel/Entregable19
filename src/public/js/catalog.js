@@ -17,7 +17,6 @@ async function updateUserRole(success) {
     }
 }
 
-
 socket.on('newProductinCart', (data) => {
     updateProductCounter(data);
 });
@@ -33,14 +32,6 @@ bttChangeRol.addEventListener("click", (evt) => {
         uid
     })
 });
-// bttChangeRolpremium.addEventListener("click", (evt) => {
-//     evt.preventDefault()
-//     let uid = document.getElementById("uid").innerText;
-
-//     socket.emit('changeUserStatus', {
-//         uid
-//     })
-// });
 
 const manegedivShown = () => {
     const counterSpam = document.getElementById("counter");

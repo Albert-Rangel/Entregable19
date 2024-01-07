@@ -2005,3 +2005,26 @@ error: Error en CartService/getcartsviaService: MongooseError: Operation `carts.
 error: Error en CartService/addCartviaService: MongooseError: Operation `carts.insertOne()` buffering timed out after 10000ms {"label":"logs","timestamp":"2024-01-07T19:51:03.896Z"}
 2024-01-07T20:01:37.150Z [logs] error: Error en userController/changeRol: TypeError: Cannot read properties of undefined (reading '0')
 2024-01-07T20:03:32.910Z [logs] error: Error en userController/changeRol: TypeError: Cannot read properties of undefined (reading '0')
+2024-01-07T20:09:28.289Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T20:12:50.472Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T20:15:05.793Z [logs] error: Error en CartService/addCartProductsviaService: ReferenceError: pid is not defined
+2024-01-07T20:49:29.132Z [logs] error: Error en ProductsService/updateProductviaService: ReferenceError: cobnsole is not defined
+2024-01-07T20:50:14.304Z [logs] error: Error en ProductsService/updateProductviaService: ReferenceError: cobnsole is not defined
+2024-01-07T21:11:19.423Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-07T21:15:59.920Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-07T21:16:33.845Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-07T21:18:54.690Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-07T21:32:49.363Z [logs] error: Error en ProductManager/updateProduct: ReferenceError: Cannot access 'updatedproduct' before initialization
+2024-01-07T21:32:49.364Z [logs] error: Error en CartManager/purchaseCart: TypeError: Cannot read properties of undefined (reading 'status')
+2024-01-07T21:33:12.567Z [logs] error: Error en ProductManager/updateProduct: ReferenceError: Cannot access 'updatedproduct' before initialization
+2024-01-07T21:33:12.568Z [logs] error: Error en CartManager/purchaseCart: TypeError: Cannot read properties of undefined (reading 'status')
+2024-01-07T21:34:06.263Z [logs] error: Error en ProductManager/updateProduct: TypeError: Cannot read properties of undefined (reading '_id')
+2024-01-07T21:34:06.265Z [logs] error: Error en CartManager/purchaseCart: TypeError: Cannot read properties of undefined (reading 'status')
+2024-01-07T21:45:48.270Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T21:55:07.756Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T21:55:34.247Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T21:56:25.508Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T21:59:39.559Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T22:00:36.949Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T22:00:48.363Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"
+2024-01-07T22:01:14.946Z [logs] error: Error en CartService/addCartProductsviaService: CastError: Cast to ObjectId failed for value "{ _id: undefined }" (type Object) at path "_id" for model "carts"

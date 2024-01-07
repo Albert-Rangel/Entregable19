@@ -66,16 +66,27 @@ export const addCartProducts = async (req, res) => {
     let pid = 0
     let cid = 0
     let uid = 0
+
     if (req.params != undefined) {
+      console.log("entro en diferente de web")
+
       pid = req.params.pid
       cid = req.params.cid
       uid = req.query.uid
     } else {
       swWeb = true
+      console.log("entro en web")
       cid = req.cid
       pid = req.pid
       uid = req.uid
     }
+
+    console.log("CART CONTROLLER ")
+    //console.log(req)//SI FUNCIONA ES MUY LARGO
+    console.log(cid)
+    console.log(pid)
+    console.log(uid)
+
     const answer = await CartsManager.addCartProductsviaService(pid, cid, uid)
     const arrayAnswer = ManageAnswer(answer)
     return swWeb ? answer : res.status(arrayAnswer[0]).send({
@@ -202,7 +213,7 @@ export const getProductsinCartByIdPagination = async (req, res) => {
         status: arrayAnswer[0],
         message: arrayAnswer[1]
       }
-      
+
       return res.send(answer);
     }
   } catch (error) {
@@ -358,23 +369,22 @@ export const purchaseCart = async (req, res) => {
   try {
     let cid = 0
     let email = ""
-
     let swWeb = false
     if (req.params != undefined && req.session.user == undefined) {
+      console.log("entro en thunderclient")
       cid = req.params.cid
       email = "claudie.funk69@ethereal.email"
     } else {
+      console.log("entro en web")
+      if (req.params.cid != undefined) { swWeb = false } else { swWeb = true }//esto es en caso que sea swagger es false si es la web es true
 
-      swWeb = true
       cid = req.session.user.cart
       email = req.session.user.email
     }
 
-
     let totalsum = 0
     //obtener los productos dentro del carrito
     const answer = await getProductsinCartById(cid)
-
 
     //valido si es un string es caso fallido y retorno
     const isString = (value) => typeof value === 'string';
@@ -430,8 +440,12 @@ export const purchaseCart = async (req, res) => {
       console.log("sumatoria de precio", sumtotalprice)
       console.log("suma total", totalsum)
 
+      let productToUpdate = answer[i].id
+      productToUpdate.stock = stock
+
       // //Actualizar el Quantity de ese producto
-      const updateProductQTT = await updateProduct({ pid, stock })
+      // const updateProductQTT = await updateProduct({ pid, stock })
+      const updateProductQTT = await updateProduct({ productToUpdate })
 
       if (isString(updateProductQTT) && updateProductQTT.substring(0, 3) != "SUC") {
         const arrayAnswer = ManageAnswer(updateProductQTT)
@@ -439,6 +453,7 @@ export const purchaseCart = async (req, res) => {
           status: arrayAnswer[0],
           message: arrayAnswer[1]
         }
+       
         return swWeb ? error : res.send(error);
 
       }
@@ -452,13 +467,14 @@ export const purchaseCart = async (req, res) => {
         }
         let eliminateProdinCart = await deleteCartProduct(deletebject)
 
-
+        
         if (isString(eliminateProdinCart) && eliminateProdinCart.substring(0, 3) != "SUC") {
           const arrayAnswer = ManageAnswer(eliminateProdinCart)
           const error = {
             status: arrayAnswer[0],
             message: arrayAnswer[1]
           }
+        
           return swWeb ? error : res.send(error);
 
         }
@@ -469,8 +485,10 @@ export const purchaseCart = async (req, res) => {
           cid,
           finalqtt
         }
+       
         //Actualizamos la quantity del producto en el carrito
         let updateProdInCart = await updateCartProductQuantity(upqttobject)
+        
 
         if (isString(updateProdInCart) && updateProdInCart.substring(0, 3) != "SUC") {
           const arrayAnswer = ManageAnswer(updateProdInCart)
@@ -478,6 +496,7 @@ export const purchaseCart = async (req, res) => {
             status: arrayAnswer[0],
             message: arrayAnswer[1]
           }
+          
           return swWeb ? error : res.send(error);
 
         }
@@ -491,15 +510,18 @@ export const purchaseCart = async (req, res) => {
     })
 
     const emailSend = await emailService.sendEmail(ticket)
-
+    console.log("YA MANDO EL CORREO CON EL TICKETC")
     if (isString(emailSend) && emailSend.substring(0, 3) != "SUC") {
       const arrayAnswer = ManageAnswer(emailSend)
       const error = {
         status: arrayAnswer[0],
         message: arrayAnswer[1]
       }
+     
+
       return swWeb ? error : res.send(error);
     }
+    
 
     return swWeb ? res.redirect('/products') : res.send({ status: 200, message: "ha sido enviado el correo" });
 

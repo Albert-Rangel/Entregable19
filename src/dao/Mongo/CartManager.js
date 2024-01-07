@@ -7,7 +7,7 @@ class CartManager {
     }
 
     async addCartProductsviaService(pid, cid, uid){
-        return await CartsRepositories.addCartProductsviaService(pid, cid, uid)
+        return await CartsRepositories.addCartProductsviaService({pid, cid, uid})
     }
 
     async getcartsviaService(){

@@ -138,8 +138,12 @@ Socketserverio.on('connection', async (socket) => {
   })
 
   socket.on('addNewProducttoCart', async ({ pid, cartid, uid }) => {
+    console.log("websockect")
+    console.log(pid)
+    console.log(cartid)
+    console.log(uid)
     const cid = cartid.substr(1, cartid.length - 1);
-    const newproductincart = await CartsManager.addCartProductsviaService({ pid, cid, uid })
+    const newproductincart = await CartsManager.addCartProductsviaService(pid, cid, uid )
     Socketserverio.emit('newProductinCart', newproductincart)
   })
 })

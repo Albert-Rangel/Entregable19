@@ -170,22 +170,30 @@ export const getProductById = async (req, res) => {
 }
 export const updateProduct = async (req, res) => {
   try {
+
     let pid = 0
     let swINtern = false
     let updatedproduct = {}
 
     if (req.params == undefined) {
+      console.log("entro en el if")
       swINtern = true
-      pid = req.pid;
       if (req.newProduct != undefined) {
+        console.log("entro en el if 1")
+        pid = req.pid;
         updatedproduct = req.newProduct; // cuando actualiza el producto por metod de update product
       } else {
-        updatedproduct = req.stock //cuando actualiza el stock que envia el correo
+        console.log("entro en el if 2")
+        pid = req.productToUpdate._id
+        updatedproduct = req.productToUpdate // cuando actualiza el stock que envia el correo
       }
     } else {
+      console.log("entro en el else")
       pid = req.params.pid
       updatedproduct = req.body
     }
+
+
 
     let answer = await ProductsManager.updateProductviaService(pid, updatedproduct);
     const arrayAnswer = ManageAnswer(answer)

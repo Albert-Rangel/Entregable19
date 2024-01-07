@@ -5,7 +5,7 @@ import { userModel } from '../dao/models/user.model.js';
 
 import { logger } from '../utils/logger.js';
 
- class cartsRepositories {
+class cartsRepositories {
 
     async addCartviaService() {
         let cart2 = {}
@@ -21,8 +21,24 @@ import { logger } from '../utils/logger.js';
         }
     }
 
-    async addCartProductsviaService(pid, cid, uid) {
+    async addCartProductsviaService(ids) {
         try {
+
+            
+            console.log("ids")
+            console.log(ids)
+
+            let pid = ids.pid
+            let cid = ids.cid
+            let uid = ids.uid
+
+            console.log("pid")
+            console.log(pid)
+            console.log("cid")
+            console.log(cid)
+            console.log("uid")
+            console.log(uid)
+
 
             const cartObject = await cartsModel.findById({ _id: cid })
             if (cartObject == undefined || Object.keys(cartObject).length === 0) return `E02|El carro con el id ${cid} no se encuentra agregado.`;
