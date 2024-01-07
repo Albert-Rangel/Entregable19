@@ -6,8 +6,6 @@ function folderName(file) {
   return name
 }
 function fileName(name, field,  id) {
-  console.log(name)
-  console.log(field)
   
   let filename  = name.split('.')
   console.log(filename)

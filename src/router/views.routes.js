@@ -62,7 +62,7 @@ router.get("/UploaderView", async (req, res) => {
     res.render("UploadViewer", {
         title: "Uploader",
         style: "home.css",
-        uid: id, firstname,lastname, age, email_, cart, role
+        uid: id, firstname,lastname, age, email_, cart, role, 
     })
 })
 

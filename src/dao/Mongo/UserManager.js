@@ -9,7 +9,7 @@ class UserManager {
     console.log("entro en el manager")
     return await UserRepositories.changeRol(uid)
   }
-  async uploadFile() {
+  async uploadFile(uid) {
     return await UserRepositories.uploadFile(uid);
   }
 }

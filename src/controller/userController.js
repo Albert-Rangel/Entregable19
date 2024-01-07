@@ -67,7 +67,7 @@ export const uploadFile = async (req, res) => {
         var uid = req.params.uid
         console.log("uid" + uid)
         // if (!req.file) {
-        //  console.log("es nulo")
+        //  console.log("es nulo")4
         // }
 
         let answer = await UsersManager.uploadFile(uid)

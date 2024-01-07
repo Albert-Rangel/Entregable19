@@ -1937,3 +1937,19 @@ error: Error en ProductsService/getProductNpaginviaService: MongooseError: Opera
 2024-01-06T23:55:10.905Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
 2024-01-06T23:55:40.923Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
 2024-01-06T23:56:22.908Z [logs] error: Error en ProductsService/getProductWpaginviaService: MongooseError: Operation `products.countDocuments()` buffering timed out after 10000ms
+2024-01-07T00:16:27.395Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: uid is not defined
+2024-01-07T00:17:12.342Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: carnnew is not defined
+2024-01-07T00:24:34.636Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: path is not defined
+2024-01-07T00:26:47.936Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: __dirname is not defined
+2024-01-07T00:28:54.761Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: carnnew is not defined
+2024-01-07T00:32:24.301Z [logs] error: Error en userRepositories/uploadFile: Error: ENOENT: no such file or directory, access 'C:\Users\alber\Desktop\Entregable18\srcpublicprofilesa.js'
+2024-01-07T00:33:12.623Z [logs] error: Error en userRepositories/uploadFile: Error: ENOENT: no such file or directory, access 'C:\Users\alber\Desktop\Entregable18\srcpublic\profiles\a.js'
+2024-01-07T00:41:46.604Z [logs] error: Error en userRepositories/uploadFile: Error: ENOENT: no such file or directory, open 'C:\Users\alber\Desktop\Entregable18\src\public\profiles\b.js'
+2024-01-07T00:47:18.623Z [logs] error: Error en userRepositories/uploadFile: TypeError: fs.existsSync is not a function
+2024-01-07T00:47:56.129Z [logs] error: Error en userRepositories/uploadFile: TypeError: fs.fileExists is not a function
+2024-01-07T00:50:43.639Z [logs] error: Error en userRepositories/uploadFile: Error: ENOENT: no such file or directory, access 'C:\Users\alber\Desktop\Entregable18\src\public\profiles\b.js'
+2024-01-07T01:47:09.630Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: Cannot access 'allDocumentsFound' before initialization
+2024-01-07T01:48:29.100Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: Cannot access 'allDocumentsFound' before initialization
+2024-01-07T01:49:50.293Z [logs] error: Error en userRepositories/uploadFile: TypeError: allDocumentsFound.some is not a function
+2024-01-07T01:52:39.433Z [logs] error: Error en userRepositories/uploadFile: TypeError: allDocumentsFound.some is not a function
+2024-01-07T01:54:45.072Z [logs] error: Error en userRepositories/uploadFile: ReferenceError: updatedocuments is not defined

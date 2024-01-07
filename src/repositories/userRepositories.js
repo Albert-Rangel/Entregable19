@@ -19,7 +19,7 @@ class usersRepositories {
     }
   }
 
-  async uploadFile() {
+  async uploadFile(uid) {
     try {
       // if (!req.file) {
       //   return res.status(500).send({
@@ -31,12 +31,15 @@ class usersRepositories {
       // var uid = req.params.uid
 
       let user = await UserService.obtainUser(uid)
+      console.log(user)
+
+      let userupdated = await UserService.updateUserDocuments(uid)
 
       // const arrayAnswer = ManageAnswer(answer)
 
       // req.session.user.role = arrayAnswer[1]
 
-      return `SUC|Carrito agregado con el id ${carnnew._id}`
+      return `SUC|Exito`
 
     } catch (error) {
       logger.error("Error en userRepositories/uploadFile: " + error)
