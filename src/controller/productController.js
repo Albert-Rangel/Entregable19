@@ -42,6 +42,7 @@ function ManageAnswer(answer) {
 
 export const getProducts = async (req, res) => {
   try {
+    console.log("entro")
     let limit = 0;
     let page = 0
     let sort_ = null
@@ -67,13 +68,19 @@ export const getProducts = async (req, res) => {
 
     const isString = (value) => typeof value === 'string';
     if (isString(products)) {
-
+      console.log("entro en string")
       const arrayAnswer = ManageAnswer(products)
       return res.status(arrayAnswer[0]).send({
         status: arrayAnswer[0],
         message: arrayAnswer[1]
       })
     }
+    // console.log("products")
+    // console.log(products)
+
+    console.log(swWeb)
+    // swWeb = false
+    // console.log(swWeb)
 
     return swWeb ? products : res.send(products);
 

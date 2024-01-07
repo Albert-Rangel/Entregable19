@@ -20,12 +20,7 @@ paths:
       summary: Obtiene todos los productos Paginados
       tags: 
         - Products
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#components/requestBodies/updateQuantity'
+      
       responses: 
         "200":
           description: Los productos fueron obtenidos satisfactoriamente desde la bd
